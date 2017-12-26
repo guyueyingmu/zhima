@@ -7,11 +7,12 @@ class Credit{
     private $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 
     public function __construct() {
-        require_once(LIB_PATH.'/system/libraries/zhima/aop/AopClient.php');
+        require_once('aop/AopClient.php');
         $this->aopObj = new AopClient();
     }
 
     public function index(){
+        var_dump(1213);exit;
         $data['app_id']       =  '2017122201059023';
         $data['scope']        =  'auth_base';
         $data['redirect_uri'] =  'http://zhima.ingdu.cn/credit/creditScoreNotify';
