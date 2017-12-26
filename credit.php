@@ -1,5 +1,4 @@
 <?php
-echo  4444;exit("OK");
 class Credit{
 
     private $aopObj = NULL;
@@ -7,7 +6,6 @@ class Credit{
     private $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 
     public function __construct() {
-        exit("PL");
         require_once('aop/AopClient.php');
         $this->aopObj = new AopClient();
     }
@@ -59,8 +57,8 @@ class Credit{
     }
 
     public function getUserScore($access_token){
-        require_once(LIB_PATH.'/system/libraries/zhima/zhima.config.php');
-        require_once(LIB_PATH.'/system/libraries/zhima/aop/request/ZhimaCreditScoreGetRequest.php');
+        require_once('zhima.config.php');
+        require_once('/aop/request/ZhimaCreditScoreGetRequest.php');
 
 
 //        print_r($zhimaConf);exit;
