@@ -38,7 +38,7 @@ $access_token = $result['alipay_system_oauth_token_response']['access_token'];
 
 
 $aopObj->auth_token            = $access_token;
-echo access_token;
+echo $access_token;
 require_once('aop/request/ZhimaCreditScoreGetRequest.php');
 
 $request = new ZhimaCreditScoreGetRequest ();
