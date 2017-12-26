@@ -32,14 +32,12 @@ try{
 
 }
 $result = json_decode( json_encode( $result),true);
-$access_token = $result['AlipaySystemOauthTokenRequest']['access_token'];
+$access_token = $result['alipay_system_oauth_token_response']['access_token'];
 
-var_dump($result);
-var_dump($access_token);exit;
 // $this->getUserScore($access_token);
 
 
-$this->aopObj->auth_token            = $access_token;
+$aopObj->auth_token            = $access_token;
 require_once('/aop/request/ZhimaCreditScoreGetRequest.php');
 
 $request = new ZhimaCreditScoreGetRequest ();
@@ -49,8 +47,8 @@ $data['product_code']   = "w1010100100000000001";
 
 $request->setBizContent(json_encode($data));
 
-$result = $this->aopObj->execute ( $request  );
-var_dump($result);exit;
+$result = $aopObj->execute ( $request  );
+
 
 $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
 $resultCode = $result->$responseNode->code;
