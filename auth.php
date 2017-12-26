@@ -31,7 +31,8 @@ try{
 }catch (Exception $e){
 
 }
-$access_token = $result->getAccessToken();
+$result = json_decode( json_encode( $result),true);
+$access_token = $result['AlipaySystemOauthTokenRequest']['access_token'];
 
 var_dump($result);
 var_dump($access_token);exit;
