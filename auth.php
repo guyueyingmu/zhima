@@ -3,11 +3,14 @@
 $parmars =  $_GET;
 
 if(!$parmars['auth_code']){
-    return false;
+    echo 4444;
 }
 
 require_once('aop/request/AlipaySystemOauthTokenRequest.php');
 $authRequest = new AlipaySystemOauthTokenRequest();
+
+require_once('aop/AopClient.php');
+$aopObj = new AopClient();
 
 
 
@@ -15,7 +18,7 @@ $authRequest->setCode($parmars['auth_code']);
 $authRequest->setGrantType('authorization_code');
 
 try{
-    $result = $this->aopObj->execute($authRequest);
+    $result = $aopObj->execute($authRequest);
 
 }catch (Exception $e){
 
