@@ -38,7 +38,7 @@ $access_token = $result['alipay_system_oauth_token_response']['access_token'];
 
 
 $aopObj->auth_token            = $access_token;
-require_once('/aop/request/ZhimaCreditScoreGetRequest.php');
+require_once('aop/request/ZhimaCreditScoreGetRequest.php');
 
 $request = new ZhimaCreditScoreGetRequest ();
 //        var_dump($request);exit;
@@ -53,7 +53,7 @@ $result = $aopObj->execute ( $request  );
 $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
 $resultCode = $result->$responseNode->code;
 if(!empty($resultCode)&&$resultCode == 10000){
-    echo "成功";
+    echo "success";
 } else {
     echo "失败";
 }
