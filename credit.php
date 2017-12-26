@@ -53,6 +53,8 @@ class Credit{
 
         }
 
+        $access_token = $result->getAccessToken();
+        $this->getUserScore($access_token);
 
     }
 
@@ -65,8 +67,9 @@ class Credit{
         foreach($zhimaConf as $key=>$value){
             $this->aopObj->$key = $value;
         }
-        $this->aopObj->rsaPrivateKeyFilePath = LIB_PATH.'/system/libraries/zhima/rsa_private_key.pem';
-        $this->aopObj->alipayPublicKey       = LIB_PATH.'/system/libraries/zhima/rsa_public_key.pem';
+        $this->aopObj->rsaPrivateKeyFilePath = 'rsa_private_key.pem';
+        $this->aopObj->alipayPublicKey       = 'rsa_public_key.pem';
+        $this->aopObj->auth_token            = $access_token;
 
         $request = new ZhimaCreditScoreGetRequest ();
 //        var_dump($request);exit;
