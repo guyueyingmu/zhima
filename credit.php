@@ -7,6 +7,7 @@ class Credit{
     private $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 
     public function __construct() {
+        exit("PL");
         require_once('aop/AopClient.php');
         $this->aopObj = new AopClient();
     }
