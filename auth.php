@@ -13,7 +13,7 @@ require_once('aop/AopClient.php');
 $aopObj = new AopClient();
 
 
-
+print_r($parmars);exit("OL");
 $authRequest->setCode($parmars['auth_code']);
 $authRequest->setGrantType('authorization_code');
 
@@ -26,7 +26,7 @@ try{
 
 $access_token = $result->getAccessToken();
 var_dump($access_token);exit;
-$this->getUserScore($access_token);
+// $this->getUserScore($access_token);
 
 
 require_once('zhima.config.php');
