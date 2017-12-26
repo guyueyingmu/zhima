@@ -1,5 +1,5 @@
 <?php
-
+echo  4444;exit("OK");
 class Credit{
 
     private $aopObj = NULL;
