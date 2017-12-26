@@ -13,7 +13,6 @@ require_once('aop/AopClient.php');
 $aopObj = new AopClient();
 
 
-print_r($parmars);exit("OL");
 $authRequest->setCode($parmars['auth_code']);
 $authRequest->setGrantType('authorization_code');
 
@@ -23,7 +22,7 @@ try{
 }catch (Exception $e){
 
 }
-
+var_dump($result);exit;
 $access_token = $result->getAccessToken();
 var_dump($access_token);exit;
 // $this->getUserScore($access_token);
