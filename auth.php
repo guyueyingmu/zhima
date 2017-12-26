@@ -12,6 +12,15 @@ $authRequest = new AlipaySystemOauthTokenRequest();
 require_once('aop/AopClient.php');
 $aopObj = new AopClient();
 
+require_once('zhima.config.php');
+
+
+foreach($zhimaConf as $key=>$value){
+    $aopObj->$key = $value;
+}
+$aopObj->rsaPrivateKeyFilePath = 'rsa_private_key.pem';
+$aopObj->alipayPublicKey       = 'rsa_public_key.pem';
+
 
 $authRequest->setCode($parmars['auth_code']);
 $authRequest->setGrantType('authorization_code');
@@ -28,17 +37,8 @@ var_dump($access_token);exit;
 // $this->getUserScore($access_token);
 
 
-require_once('zhima.config.php');
-require_once('/aop/request/ZhimaCreditScoreGetRequest.php');
-
-
-//        print_r($zhimaConf);exit;
-foreach($zhimaConf as $key=>$value){
-    $this->aopObj->$key = $value;
-}
-$this->aopObj->rsaPrivateKeyFilePath = 'rsa_private_key.pem';
-$this->aopObj->alipayPublicKey       = 'rsa_public_key.pem';
 $this->aopObj->auth_token            = $access_token;
+require_once('/aop/request/ZhimaCreditScoreGetRequest.php');
 
 $request = new ZhimaCreditScoreGetRequest ();
 //        var_dump($request);exit;
