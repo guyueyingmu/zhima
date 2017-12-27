@@ -52,7 +52,7 @@ $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response
 // var_dump($result);
 $resultCode = $result->$responseNode->code;
 
-$redirect_url = "http://www.shopyz.cn/index.php/home/User/zhima?"
+$redirect_url = "http://www.shopyz.cn/index.php/home/User/zhima?";
 if(!empty($resultCode)&&$resultCode == 10000){
     $return['zm_score'] =  $result->$responseNode->zm_score;
     header("Location:".$redirect_url.http_build_query($return));
