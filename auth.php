@@ -49,7 +49,7 @@ $result = $aopObj->execute ( $request ,$access_token );
 
 
 $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
-var_dump($result);
+// var_dump($result);
 $resultCode = $result->$responseNode->code;
 if(!empty($resultCode)&&$resultCode == 10000){
     echo "success";
