@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:text/html;charset=utf-8");
 $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 $data['app_id']       =  '2017122201059023';
 $data['scope']        =  'auth_zhima';

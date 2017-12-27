@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:text/html;charset=utf-8");
 $parmars =  $_GET;
 
 if(!$parmars['auth_code']){
@@ -40,19 +40,20 @@ require_once('aop/request/ZhimaCreditScoreGetRequest.php');
 
 $request = new ZhimaCreditScoreGetRequest ();
 //        var_dump($request);exit;
-$data['transaction_id'] = "201512100936588040000000465144";
+$data['transaction_id'] = time().rand(1,1000);
 $data['product_code']   = "w1010100100000000001";
 
 $request->setBizContent(json_encode($data));
 
 $result = $aopObj->execute ( $request ,$access_token );
-var_dump($result);exit;
 
 
 $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+var_dump($result);
 $resultCode = $result->$responseNode->code;
 if(!empty($resultCode)&&$resultCode == 10000){
     echo "success";
+    echo $result->$responseNode->zm_score;
 } else {
     echo "失败";
 }
