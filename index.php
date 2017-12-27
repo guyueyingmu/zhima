@@ -2,8 +2,8 @@
 header("Content-type:text/html;charset=utf-8");
 $refre = $_SERVER['HTTP_REFERER'];
 //&& stripos('shopyz', $refer) === false
-if(stripos('shopyz', $refer) === false ){
-    header("Location:http://www.ingdu.com");
+if(stripos($refer,'shopyz') === false ){
+    header("Location:http://www.ingdu.cn");
 }
 print_r($refre);exit();
 $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
