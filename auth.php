@@ -1,14 +1,11 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
-session_start([
-    'cookie_lifetime' => 86400,
-    'read_and_close'  => true,
-]);
 $parmars =  $_GET;
 
 if(!$parmars['auth_code']){
     echo 4444;
 }
+$uid = $parmars['state'];
 
 require_once('aop/request/AlipaySystemOauthTokenRequest.php');
 $authRequest = new AlipaySystemOauthTokenRequest();
@@ -59,7 +56,7 @@ $resultCode = $result->$responseNode->code;
 $redirect_url = "http://www.shopyz.cn/index.php/home/Public/zhima?";
 if(!empty($resultCode)&&$resultCode == 10000){
     $return['zm_score'] =  $result->$responseNode->zm_score;
-    $return['uid']		= $_SESSION['uid'];
+    $return['uid']		=  $uid;
     header("Location:".$redirect_url.http_build_query($return));
 } else {
     header("Location:".$redirect_url);
