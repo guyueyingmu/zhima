@@ -1,6 +1,9 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
-session_start();
+session_start([
+    'cookie_lifetime' => 86400,
+    'read_and_close'  => true,
+]);
 $parmars =  $_GET;
 
 if(!$parmars['auth_code']){
