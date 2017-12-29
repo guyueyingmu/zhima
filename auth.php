@@ -1,5 +1,6 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
+session_start();
 $parmars =  $_GET;
 
 if(!$parmars['auth_code']){
@@ -52,9 +53,10 @@ $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response
 // var_dump($result);
 $resultCode = $result->$responseNode->code;
 
-$redirect_url = "http://www.shopyz.cn/index.php/home/User/zhima?";
+$redirect_url = "http://www.shopyz.cn/index.php/home/Public/zhima?";
 if(!empty($resultCode)&&$resultCode == 10000){
     $return['zm_score'] =  $result->$responseNode->zm_score;
+    $return['uid']		= $_SESSION['uid'];
     header("Location:".$redirect_url.http_build_query($return));
 } else {
     header("Location:".$redirect_url);
