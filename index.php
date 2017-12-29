@@ -5,7 +5,7 @@ $refre = $_SERVER['HTTP_REFERER'];
 if(stripos('shopyz',$refer) === false ){
     // header("Location:http://www.ingdu.cn");
 }
-$result = http_request('http://www.shopyz.cn/index.php/home/User/zhima_test', ['zm_score'=>100]]);
+$result = http_request('http://www.shopyz.cn/index.php/home/Public/zhima_test', ['zm_score'=>100]]);
 print_r($result);
 $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 $data['app_id']       =  '2017122201059023';
