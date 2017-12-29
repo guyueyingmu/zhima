@@ -1,9 +1,6 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
-session_start([
-    'cookie_lifetime' => 86400,
-    'read_and_close'  => true,
-]);
+
 $refre = $_SERVER['HTTP_REFERER'];
 //&& stripos('shopyz', $refer) === false
 if(stripos('shopyz',$refer) === false ){
@@ -11,12 +8,11 @@ if(stripos('shopyz',$refer) === false ){
 }
 // $result = http_request('http://www.shopyz.cn/index.php/home/Public/zhima_test', ['zm_score'=>100]);
 // print_r($result);
-$_SESSION['uid'] = $_GET['uid'];
 $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 $data['app_id']       =  '2017122201059023';
 $data['scope']        =  'auth_zhima';
 $data['redirect_uri'] =  'http://zhima.ingdu.cn/auth.php';
-$data['state']        =  '345';
+$data['state']        =  $_GET['uid']; //uid赋在state里面
 $url = $userAuthUrl.http_build_query($data);
 if(is_mobile()){
     header("Location:".'alipays://platformapi/startapp?appId=20000067&url='.urlencode($url));
