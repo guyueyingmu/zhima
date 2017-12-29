@@ -5,6 +5,8 @@ $refre = $_SERVER['HTTP_REFERER'];
 if(stripos('shopyz',$refer) === false ){
     // header("Location:http://www.ingdu.cn");
 }
+$result = http_request('http://www.shopyz.cn/index.php/home/User/zhima_test', ['zm_score'=>100]]);
+print_r($result);
 $userAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
 $data['app_id']       =  '2017122201059023';
 $data['scope']        =  'auth_zhima';
@@ -77,5 +79,39 @@ function is_mobile() {
         }
     }
     return false;
+}
+
+/**
+ * CURL
+ * @param $url
+ * @param array $data
+ * @return bool|mixed
+ */
+function http_request($url,$data=array()){
+    $header = ["Content-Type: application/x-www-form-urlencoded; charset=utf-8"];
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($curl,CURLOPT_HTTPHEADER,$header);
+    if (!empty($data)){
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    }
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($curl);
+    $information = curl_getinfo($curl);
+    curl_close($curl);
+//    print_r($information);
+    //返回结果
+    if($information['http_code'] == 200){
+        $output = json_decode($output,true);
+        return $output;
+    } else {
+        $error = curl_errno($curl);
+        echo "curl出错，错误码:$error"."<br>";
+        echo "<a href='http://curl.haxx.se/libcurl/c/libcurl-errors.html'>错误原因查询</a><br>";
+        return false;
+    }
 }
     
